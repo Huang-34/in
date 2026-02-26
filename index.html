@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页 | 黄韵锦</title>
+    <!-- 保留字体图标库，用于图标显示 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ===== 极简静态样式 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+        }
+        
+        /* ===== 头像区域 ===== */
+        .avatar-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #e0e0e0;
+            background-color: #f0f0f0;
+        }
+        
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* 如果没有图片，显示文字占位 */
+        .avatar-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        
+        /* ===== 标题区域 ===== */
+        .title-wrapper {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #222;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        
+        /* 移除线条装饰，用简单的横线替代 */
+        .title-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 15px auto;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        
+        /* ===== 简介卡片 ===== */
+        .intro-card {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .intro-text {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        /* ===== 导航卡片 ===== */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-card {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-card:hover {
+            background-color: #f0f0f0;
+            border-color: #667eea;
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-icon i {
+            font-size: 20px;
+            color: white;
+        }
+        
+        .nav-card h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .nav-card p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .card-link {
+            color: #667eea;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        
+        /* ===== 联系方式 ===== */
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        .email-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            font-size: 0.95rem;
+            padding: 8px 20px;
+            background-color: #f8f9fa;
+            border-radius: 30px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .email-display i {
+            color: #667eea;
+        }
+        
+        /* ===== 移除所有动画相关元素 ===== */
+        .scroll-hint,
+        .gradient-bg,
+        .gradient-sphere,
+        .title-lines,
+        .line-svg,
+        .scroll-top {
+            display: none;
+        }
+        
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-cards {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 主内容 -->
+    <div class="container">
+        <!-- 头像区域 -->
+        <div class="avatar-wrapper">
+            <div class="avatar">
+                <!-- 如果有图片就用图片，没有就显示文字 -->
+                <img src="images/avatar.jpg" alt="黄韵锦的头像" class="avatar-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=avatar-text>黄</div>'">
+            </div>
+        </div>
+
+        <!-- 标题区域 - 简化版 -->
+        <div class="title-wrapper">
+            <h1>黄韵锦</h1>
+            <div class="title-line"></div>
+        </div>
+        
+        <p class="subtitle">热爱交流的探索者 | 数模协会成员</p>
+
+        <!-- 简介卡片 -->
+        <div class="intro-card">
+            <p class="intro-text">
+                ✨ 大家好！我是数字媒体技术专业2025级的学生。我相信每一次思想的碰撞都能擦出新的火花。
+            </p>
+        </div>
+
+        <!-- 导航卡片区域 - 只有三个板块 -->
+        <div class="nav-cards">
+            <!-- 关于我卡片 -->
+            <div class="nav-card" onclick="location.href='about.html'">
+                <div class="card-icon"><i class="fas fa-user"></i></div>
+                <h3>关于我</h3>
+                <p>背景、兴趣与方向</p>
+                <span class="card-link">了解更多 →</span>
+            </div>
+
+            <!-- 学海拾贝卡片（技能展示） -->
+            <div class="nav-card" onclick="location.href='skills.html'">
+                <div class="card-icon"><i class="fas fa-cube"></i></div>
+                <h3>📚 学海拾贝</h3>
+                <p>编程·数学·工具</p>
+                <span class="card-link">探索技能树 →</span>
+            </div>
+
+            <!-- 我的思考卡片 -->
+            <div class="nav-card" onclick="location.href='thinking.html'">
+                <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>我的思考</h3>
+                <p>为什么要加入讨论组</p>
+                <span class="card-link">了解更多 →</span>
+            </div>
+        </div>
+
+        <!-- 联系方式 - 直接显示邮箱 -->
+        <div class="contact-info">
+            <div class="email-display">
+                <i class="fas fa-envelope"></i>
+                <span>553468495@qq.com</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 移除 script.js 引用，因为不需要了 -->
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学海拾贝 | 黄韵锦</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ===== 极简静态样式 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 20px auto;
+        }
+        
+        /* 返回按钮 */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: white;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .back-button i {
+            font-size: 14px;
+        }
+        
+        .back-button:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* 内容卡片 */
+        .content-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            color: #222;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-subtitle {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        /* 分类样式 */
+        .category {
+            margin-bottom: 50px;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 12px;
+        }
+        
+        .category-icon {
+            font-size: 24px;
+            color: #667eea;
+        }
+        
+        .category-header h2 {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 0;
+            font-weight: 500;
+        }
+        
+        /* 技能卡片网格 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .skill-card {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px 20px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s ease;
+        }
+        
+        .skill-card:hover {
+            border-color: #667eea;
+            background-color: #f0f0f0;
+        }
+        
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea20, #764ba220);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+        
+        .skill-icon i {
+            font-size: 24px;
+            color: #667eea;
+        }
+        
+        .skill-card h3 {
+            text-align: center;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .skill-level {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+        
+        .skill-desc {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        /* 数学网格 */
+        .math-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .math-item {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .math-item h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2rem;
+        }
+        
+        .math-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .math-tag {
+            background-color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #667eea;
+            border: 1px solid #667eea40;
+        }
+        
+        .interest-level {
+            color: #ffd700;
+            font-size: 0.9rem;
+        }
+        
+        /* 工具网格 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .tool-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s ease;
+        }
+        
+        .tool-item:hover {
+            border-color: #667eea;
+        }
+        
+        .tool-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-radius: 8px;
+            color: #667eea;
+            font-size: 16px;
+        }
+        
+        .tool-item span:not(.tool-level) {
+            flex: 1;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .tool-level {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            background-color: white;
+            font-weight: 500;
+        }
+        
+        .tool-level.advanced {
+            background-color: #28a74520;
+            color: #28a745;
+            border: 1px solid #28a74540;
+        }
+        
+        .tool-level.intermediate {
+            background-color: #ffc10720;
+            color: #ff9800;
+            border: 1px solid #ff980040;
+        }
+        
+        .tool-level.beginner {
+            background-color: #dc354520;
+            color: #dc3545;
+            border: 1px solid #dc354540;
+        }
+        
+        /* 学习标签 */
+        .learning-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .learning-tag {
+            background-color: #f8f9fa;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #667eea;
+            border: 1px solid #667eea40;
+        }
+        
+        /* 引用卡片 */
+        .quote-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            position: relative;
+            border-left: 4px solid #667eea;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .quote-card i {
+            color: #667eea;
+            font-size: 20px;
+            opacity: 0.3;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .quote-card p {
+            font-size: 1rem;
+            color: #555;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        
+        /* ===== 移除所有动画元素 ===== */
+        .gradient-bg,
+        .gradient-sphere,
+        .fade-in,
+        .scroll-top {
+            display: none;
+        }
+        
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .content-card {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .category-header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .skills-grid,
+            .math-grid,
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-item {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> 返回主页
+        </a>
+
+        <div class="content-card">
+            <h1>📚 学海拾贝</h1>
+            <p class="section-subtitle">大一数字媒体技术专业 · 正在构建的知识体系</p>
+            
+            <!-- 编程与开发技能 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-code category-icon"></i>
+                    <h2>编程与开发</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-python"></i></div>
+                        <h3>Python</h3>
+                        <div class="skill-level">学习中</div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 65%"></div>
+                        </div>
+                        <p class="skill-desc">基础语法、turtle绘图、简单的数据处理</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
+                        <h3>C语言</h3>
+                        <div class="skill-level">学习中</div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 55%"></div>
+                        </div>
+                        <p class="skill-desc">学习中</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数理基础 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-square-root-alt category-icon"></i>
+                    <h2>数理基础</h2>
+                </div>
+                <div class="math-grid">
+                    <div class="math-item">
+                        <h3>高等数学</h3>
+                        <div class="math-details">
+                            <span class="math-tag">极限与连续</span>
+                            <span class="math-tag">导数与微分</span>
+                            <span class="math-tag">积分初步</span>
+                        </div>
+                        <div class="interest-level">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                    </div>
+
+                    <div class="math-item">
+                        <h3>线性代数</h3>
+                        <div class="math-details">
+                            <span class="math-tag">矩阵运算</span>
+                            <span class="math-tag">向量空间</span>
+                            <span class="math-tag">线性变换</span>
+                        </div>
+                        <div class="interest-level">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 办公与创意工具 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-paint-brush category-icon"></i>
+                    <h2>创意工具</h2>
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <i class="fas fa-file-word tool-icon"></i>
+                        <span>Word</span>
+                        <div class="tool-level advanced">熟练</div>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-file-excel tool-icon"></i>
+                        <span>Excel</span>
+                        <div class="tool-level intermediate">中等</div>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-file-powerpoint tool-icon"></i>
+                        <span>PPT</span>
+                        <div class="tool-level advanced">熟练</div>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-paint-brush tool-icon"></i>
+                        <span>Photoshop</span>
+                        <div class="tool-level beginner">入门</div>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-video tool-icon"></i>
+                        <span>剪映/PR</span>
+                        <div class="tool-level intermediate">中等</div>
+                    </div>
+                    <div class="tool-item">
+                        <i class="fas fa-pen-fancy tool-icon"></i>
+                        <span>Procreate</span>
+                        <div class="tool-level intermediate">中等</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 正在探索的领域 -->
+            <div class="category">
+                <div class="category-header">
+                    <i class="fas fa-seedling category-icon"></i>
+                    <h2>正在探索的领域</h2>
+                </div>
+                <div class="learning-grid">
+                    <span class="learning-tag"># 三维建模入门</span>
+                    <span class="learning-tag"># 用户体验设计</span>
+                </div>
+            </div>
+
+            <!-- 学习心得 -->
+            <div class="quote-card">
+                <i class="fas fa-quote-left"></i>
+                <p>作为数媒专业的大一学生，我正在努力构建"技术+艺术"的知识体系。虽然每个领域都还在入门阶段，但我享受这种不断探索、不断积累的过程。期待在讨论组中与大家交流学习心得！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 移除 script.js 引用和回到顶部按钮 -->
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
